@@ -1,0 +1,113 @@
+local map = vim.keymap.set
+
+-- NVIM
+-- Unable arrows keys globally 
+map("n", "<Up>", "<Nop>", { noremap = true, silent = true })
+map("n", "<Down>", "<Nop>", { noremap = true, silent = true })
+map("n", "<Left>", "<Nop>", { noremap = true, silent = true })
+map("n", "<Right>", "<Nop>", { noremap = true, silent = true })
+-- Move line down
+map("n", "<M-j>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
+-- Move line up
+map("n", "<M-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
+-- Go to the end of the line
+map({ "n", "v" }, "E", "$", { noremap = true, silent = true, desc = "Go to end of line" })
+-- Go to the beginning of the line
+map({ "n", "v" }, "B", "^", { noremap = true, silent = true, desc = "Go to beginning of line" })
+-- Down 10 lines
+map("n", "<C-j>", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
+-- Up 10 lines
+map("n", "<C-k>", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
+-- Put a semicolon at the end of the line
+map("n", "<leader>;", "$beA;<Esc>", { noremap = true, silent = true, desc = "Add semicolon at end of line" })
+
+-- NEOTREE
+-- Open neotree in the right side
+map("n", "<leader>a", ":Neotree float <cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Open Neotree",
+})
+
+-- TELESCOPE
+-- Fuzzy find files using Telescope
+map("n", "<C-p>", require("telescope.builtin").find_files, { desc = "Find files (Telescope)" })
+-- Fuzzy find text in files using Telescope
+map("n", "<C-f>", require("telescope.builtin").live_grep, { desc = "Live grep (Telescope)" })
+
+-- LSP
+-- Show hover documentation
+map("n", "K", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP hover docs" })
+-- Go to definition under cursor
+map("n", "<leader>D", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
+-- Show code actions (normal + visual)
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "LSP code actions" })
+-- Format current buffer
+map("n", "<leader>ff", function()
+  vim.lsp.buf.format({ async = true })
+end, { noremap = true, silent = true, desc = "Format buffer" })
+
+-- COPILOT
+-- Accept suggestion
+map("i", "<C-j>", 'copilot#Accept("\\<CR>") . "\\<Esc>"', {
+  expr = true,
+  replace_keycodes = false,
+  silent = true,
+  desc = "Copilot: accept suggestion",
+})
+-- Accept next word from suggestion
+map("i", "<C-l>", "<Plug>(copilot-accept-word)", { silent = true, desc = "Copilot: accept next word" })
+-- Cancel current Copilot suggestion
+map("i", "<C-e>", "<Plug>(copilot-dismiss)", { silent = true, desc = "Copilot: dismiss suggestion" })
+-- Show next suggestion
+map("i", "<M-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next suggestion" })
+-- Show previous suggestion
+map("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
+-- Manually trigger suggestion
+map("i", "<M-s>", "<Plug>(copilot-suggest)", { silent = false, desc = "Copilot: trigger suggestion" })
+-- Enable autocompletion
+map("n", "<leader>ce", ":Copilot enable<CR>", { silent = false, desc = "Copilot: enable suggestion" })
+-- Disable autocompletion
+map("n", "<leader>cd", ":Copilot disable<CR>", { silent = false, desc = "Copilot: disable suggestion" })
+
+-- EASYMOTION
+-- Search for character under cursor
+map({"n", "v"}, "f", "<Plug>(easymotion-f)", {
+  noremap = true,
+  silent = true,
+  desc = "Easymotion: search for character under cursor",
+})
+-- Search for character over cursor
+map({"n", "v"}, "F", "<Plug>(easymotion-F)", {
+  noremap = true,
+  silent = true,
+  desc = "Easymotion: search for character over cursor",
+})
+
+-- RMARKDOWN
+map("n", "<leader>md", ":RenderMarkdown toggle<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Toggle RenderMarkdown",
+})
+
+-- BUFFERLINE 
+-- Cycle buffer ahead 
+map("n", "<Tab>", ":BufferLineCycleNext<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Cycle to next buffer",
+})
+-- Cycle buffer behind
+map("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Cycle to previous buffer",
+})
+-- Close current buffer
+map("n", "<leader>c", ":BufferLinePickClose<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Close current buffer",
+})
+
