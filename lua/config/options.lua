@@ -2,6 +2,9 @@
 vim.g.maplocalleader = " "
 vim.g.mapleader = " "
 
+-- Disable Ctrl+Z in all modes to prevent accidental suspending of Neovim:
+vim.keymap.set({ "n", "v", "i" }, "<C-z>", "<Nop>")
+
 -- Line relative numbers:
 vim.opt.relativenumber = true
 
@@ -22,9 +25,19 @@ vim.cmd("set shiftwidth=2")
 
 -- Inline errors:
 vim.diagnostic.config({
-	virtual_text = {
-		prefix = "<>", -- Error icon
-	},
-	signs = true,
-	underline = true,
+  virtual_text = {
+    wrap = true,
+    spacing = 0,
+    max_width = 80,
+    prefix = "<>", -- Error icon
+  },
+  float = {
+    focusable = false,
+    source = "always",
+    wrap = true,
+    max_width = 80,
+    border = "rounded",
+  },
+  signs = true,
+  underline = true,
 })

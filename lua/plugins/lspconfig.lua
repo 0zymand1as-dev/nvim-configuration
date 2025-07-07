@@ -13,6 +13,7 @@ return {
           "lua_ls",
           "vimls",
           "clangd",
+          "ts_ls",
         },
       })
     end,
@@ -29,6 +30,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.clangd.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
       })
     end,
