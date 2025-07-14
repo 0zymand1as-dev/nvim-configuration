@@ -119,13 +119,13 @@ map("n", "<leader>md", ":RenderMarkdown toggle<CR>", {
 
 -- WINDOWS, BUFFERS, TABS
 -- Write buffer
-map("n", "W", ":w<CR>", { noremap = true, silent = true, desc = "Write buffer" })
+map("n", "S", ":w<CR>", { noremap = true, silent = true, desc = "Write buffer" })
 -- Close current buffer
 map("n", "Q", ":q<CR>", { noremap = true, silent = true, desc = "Close current buffer" })
 -- Vertical split
-map("n", "<leader>sv", ":vsplit<CR>", { noremap = true, silent = true, desc = "Vertical split" })
+map("n", "<leader>sv", ":vsplit | wincmd l<CR>", { noremap = true, silent = true, desc = "Vertical split" })
 -- Horizontal split
-map("n", "<leader>sh", ":split<CR>", { noremap = true, silent = true, desc = "Horizontal split" })
+map("n", "<leader>sh", ":split | wincmd j<CR>", { noremap = true, silent = true, desc = "Horizontal split" })
 -- Focus right window
 map("n", "<M-l>", "<C-w>l", { noremap = true, silent = true, desc = "Focus right window" })
 -- Focus left window

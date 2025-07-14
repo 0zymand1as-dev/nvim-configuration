@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 vim.keymap.set({ "n", "v", "i" }, "<C-z>", "<Nop>")
 
 -- Line relative numbers:
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable 24-bit RGB colors in the terminal

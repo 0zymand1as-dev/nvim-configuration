@@ -20,7 +20,7 @@ function M.apply_to_nvim(colors)
 
 	-- Syntax highlighting
 	vim.api.nvim_set_hl(0, "Comment", { fg = colors["color8"], italic = true })
-	vim.api.nvim_set_hl(0, "Identifier", { fg = colors["color3"] })
+	vim.api.nvim_set_hl(0, "Identifier", { fg = colors["color5"] })
 	vim.api.nvim_set_hl(0, "Statement", { fg = colors["color13"], bold = true })
 	vim.api.nvim_set_hl(0, "Type", { fg = colors["color11"] })
 	vim.api.nvim_set_hl(0, "Function", { fg = colors["color4"] })
@@ -35,10 +35,10 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "@function.call", { link = "Function" })
 	vim.api.nvim_set_hl(0, "@keyword", { fg = colors["color13"], bold = true }) -- General keywords
 	vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
-	vim.api.nvim_set_hl(0, "@type", { fg = colors["color11"], bold = true }) -- Custom types
+	vim.api.nvim_set_hl(0, "@type", { fg = colors["color14"], bold = true }) -- Custom types
 	vim.api.nvim_set_hl(0, "@storageclass", { fg = colors["color13"], bold = true }) -- class, interface, etc.
 	vim.api.nvim_set_hl(0, "@keyword.type", { fg = colors["color13"], bold = true }) -- Type keywords
-	vim.api.nvim_set_hl(0, "@variable", { fg = colors["color3"] }) -- Variables
+	vim.api.nvim_set_hl(0, "@variable", { fg = colors["color14"] }) -- Variables
 	vim.api.nvim_set_hl(0, "@type.builtin", { fg = colors["color12"], bold = true })
 	vim.api.nvim_set_hl(0, "@function.method", { fg = colors["color5"] })
 	vim.api.nvim_set_hl(0, "@constant", { fg = colors["color7"], italic = true })
@@ -52,6 +52,70 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "@keyword.import", { fg = colors["color13"], bold = true }) -- import, from, export, default
 	vim.api.nvim_set_hl(0, "@keyword.export", { fg = colors["color13"], bold = true })
 	vim.api.nvim_set_hl(0, "@keyword.default", { fg = colors["color13"], bold = true })
+
+	-- ========== MEJORAS ESPECÍFICAS PARA JAVASCRIPT ==========
+
+	-- Declaración de variables JavaScript (const, let, var)
+	vim.api.nvim_set_hl(0, "@keyword.storage.javascript", { fg = colors["color9"], bold = true }) -- const, let, var
+	vim.api.nvim_set_hl(0, "@keyword.storage.typescript", { fg = colors["color9"], bold = true }) -- const, let, var en TS
+	vim.api.nvim_set_hl(0, "@keyword.storage.javascriptreact", { fg = colors["color9"], bold = true }) -- const, let, var en JSX
+	vim.api.nvim_set_hl(0, "@keyword.storage.typescriptreact", { fg = colors["color9"], bold = true }) -- const, let, var en TSX
+
+	-- Operadores JavaScript específicos
+	vim.api.nvim_set_hl(0, "@operator.javascript", { fg = colors["color1"], bold = true }) -- +, -, *, /, %, ==, ===, etc.
+	vim.api.nvim_set_hl(0, "@operator.typescript", { fg = colors["color1"], bold = true })
+	vim.api.nvim_set_hl(0, "@operator.javascriptreact", { fg = colors["color1"], bold = true })
+	vim.api.nvim_set_hl(0, "@operator.typescriptreact", { fg = colors["color1"], bold = true })
+
+	-- Identificadores JavaScript (nombres de variables, funciones)
+	vim.api.nvim_set_hl(0, "@variable.javascript", { fg = colors["color6"] }) -- Variables normales
+	vim.api.nvim_set_hl(0, "@variable.typescript", { fg = colors["color6"] })
+	vim.api.nvim_set_hl(0, "@variable.javascriptreact", { fg = colors["color6"] })
+	vim.api.nvim_set_hl(0, "@variable.typescriptreact", { fg = colors["color6"] })
+
+	-- Nombres de función JavaScript
+	vim.api.nvim_set_hl(0, "@function.javascript", { fg = colors["color2"], bold = true })
+	vim.api.nvim_set_hl(0, "@function.typescript", { fg = colors["color2"], bold = true })
+	vim.api.nvim_set_hl(0, "@function.javascriptreact", { fg = colors["color2"], bold = true })
+	vim.api.nvim_set_hl(0, "@function.typescriptreact", { fg = colors["color2"], bold = true })
+
+	-- Llamadas a función JavaScript
+	vim.api.nvim_set_hl(0, "@function.call.javascript", { fg = colors["color4"], italic = true })
+	vim.api.nvim_set_hl(0, "@function.call.typescript", { fg = colors["color4"], italic = true })
+	vim.api.nvim_set_hl(0, "@function.call.javascriptreact", { fg = colors["color4"], italic = true })
+	vim.api.nvim_set_hl(0, "@function.call.typescriptreact", { fg = colors["color4"], italic = true })
+
+	-- Palabras clave específicas de JavaScript
+	vim.api.nvim_set_hl(0, "@keyword.function.javascript", { fg = colors["color13"], bold = true }) -- function, async, await
+	vim.api.nvim_set_hl(0, "@keyword.function.typescript", { fg = colors["color13"], bold = true })
+	vim.api.nvim_set_hl(0, "@keyword.function.javascriptreact", { fg = colors["color13"], bold = true })
+	vim.api.nvim_set_hl(0, "@keyword.function.typescriptreact", { fg = colors["color13"], bold = true })
+
+	-- Palabras clave de control de flujo JavaScript
+	vim.api.nvim_set_hl(0, "@keyword.control.javascript", { fg = colors["color11"], bold = true }) -- if, else, for, while, etc.
+	vim.api.nvim_set_hl(0, "@keyword.control.typescript", { fg = colors["color11"], bold = true })
+	vim.api.nvim_set_hl(0, "@keyword.control.javascriptreact", { fg = colors["color11"], bold = true })
+	vim.api.nvim_set_hl(0, "@keyword.control.typescriptreact", { fg = colors["color11"], bold = true })
+
+	-- Propiedades de objetos JavaScript
+	vim.api.nvim_set_hl(0, "@property.javascript", { fg = colors["color14"] })
+	vim.api.nvim_set_hl(0, "@property.typescript", { fg = colors["color14"] })
+	vim.api.nvim_set_hl(0, "@property.javascriptreact", { fg = colors["color14"] })
+	vim.api.nvim_set_hl(0, "@property.typescriptreact", { fg = colors["color14"] })
+
+	-- Parámetros de función JavaScript
+	vim.api.nvim_set_hl(0, "@parameter.javascript", { fg = colors["color7"], italic = true })
+	vim.api.nvim_set_hl(0, "@parameter.typescript", { fg = colors["color7"], italic = true })
+	vim.api.nvim_set_hl(0, "@parameter.javascriptreact", { fg = colors["color7"], italic = true })
+	vim.api.nvim_set_hl(0, "@parameter.typescriptreact", { fg = colors["color7"], italic = true })
+
+	-- Constantes JavaScript
+	vim.api.nvim_set_hl(0, "@constant.javascript", { fg = colors["color5"], bold = true })
+	vim.api.nvim_set_hl(0, "@constant.typescript", { fg = colors["color5"], bold = true })
+	vim.api.nvim_set_hl(0, "@constant.javascriptreact", { fg = colors["color5"], bold = true })
+	vim.api.nvim_set_hl(0, "@constant.typescriptreact", { fg = colors["color5"], bold = true })
+
+	-- ========== FIN DE MEJORAS ESPECÍFICAS PARA JAVASCRIPT ==========
 
 	-- TypeScript/JavaScript types and interfaces
 	vim.api.nvim_set_hl(0, "@type.typescript", { fg = colors["color11"], bold = true }) -- Custom types like Monster
