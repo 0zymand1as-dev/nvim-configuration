@@ -14,6 +14,7 @@ return {
           "vimls",
           "clangd",
           "ts_ls",
+          "pyright",
         },
       })
     end,
@@ -33,6 +34,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.pyright.setup({
         capabilities = capabilities,
       })
     end,

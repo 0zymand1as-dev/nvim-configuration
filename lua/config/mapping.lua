@@ -11,13 +11,13 @@ map("n", "<M-J>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move 
 -- Move line up
 map("n", "<M-K>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
 -- Go to the end of the line
-map({ "n", "v" }, "E", "$", { noremap = true, silent = true, desc = "Go to end of line" })
+map({ "n", "v" }, "L", "$", { noremap = true, silent = true, desc = "Go to end of line" })
 -- Go to the beginning of the line
-map({ "n", "v" }, "B", "^", { noremap = true, silent = true, desc = "Go to beginning of line" })
+map({ "n", "v" }, "H", "^", { noremap = true, silent = true, desc = "Go to beginning of line" })
 -- Down 10 lines
-map("n", "<C-j>", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
+map("n", "J", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
 -- Up 10 lines
-map("n", "<C-k>", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
+map("n", "K", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
 -- Put a semicolon at the end of the line
 map("n", "<leader>;", "$beA;<Esc>", { noremap = true, silent = true, desc = "Add semicolon at end of line" })
 
@@ -41,7 +41,7 @@ map("n", "<C-h>", require("telescope.builtin").help_tags, { desc = "Find help ta
 
 -- LSP
 -- Show hover documentation
-map("n", "K", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP hover docs" })
+map("n", "<C-k>", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP hover docs" })
 -- Go to definition under cursor
 map("n", "<leader>D", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
 -- Show code actions (normal + visual)
@@ -118,22 +118,28 @@ map("n", "<leader>md", ":RenderMarkdown toggle<CR>", {
 })
 
 -- WINDOWS, BUFFERS, TABS
--- Write buffer
-map("n", "S", ":w<CR>", { noremap = true, silent = true, desc = "Write buffer" })
--- Close current buffer
-map("n", "Q", ":q<CR>", { noremap = true, silent = true, desc = "Close current buffer" })
+-- Write only current buffer
+map("n", "<M-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save current buffer" })
+-- Close only current buffer
+map("n", "<M-w>", ":bd<CR>", { noremap = true, silent = true, desc = "Close current buffer" })
+-- Open new tab
+map("n", "<M-e>", ":tabnew<CR>", { noremap = true, silent = true, desc = "Open new tab" })
 -- Vertical split
 map("n", "<leader>sv", ":vsplit | wincmd l<CR>", { noremap = true, silent = true, desc = "Vertical split" })
 -- Horizontal split
 map("n", "<leader>sh", ":split | wincmd j<CR>", { noremap = true, silent = true, desc = "Horizontal split" })
+-- Next buffer
+map("n", "<M-l>", ":bnext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
+-- Previous buffer
+map("n", "<M-h>", ":bprevious<CR>", { noremap = true, silent = true, desc = "Previous buffer" })
 -- Focus right window
-map("n", "<M-l>", "<C-w>l", { noremap = true, silent = true, desc = "Focus right window" })
+map("n", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "Focus right window" })
 -- Focus left window
-map("n", "<M-h>", "<C-w>h", { noremap = true, silent = true, desc = "Focus left window" })
+map("n", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "Focus left window" })
 -- Focus up window
-map("n", "<M-k>", "<C-w>k", { noremap = true, silent = true, desc = "Focus up window" })
+map("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "Focus up window" })
 -- Focus down window
-map("n", "<M-j>", "<C-w>j", { noremap = true, silent = true, desc = "Focus down window" })
+map("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "Focus down window" })
 
 
 -- COMMENT

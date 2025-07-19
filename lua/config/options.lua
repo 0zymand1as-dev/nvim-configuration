@@ -18,6 +18,7 @@ local path = vim.fn.expand("~/.config/kitty/theme.conf")
 local kitty_colors = theme.load_kitty_theme(path)
 theme.apply_to_nvim(kitty_colors)
 
+
 -- Indentation config:
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
@@ -26,19 +27,19 @@ vim.cmd("set shiftwidth=2")
 
 -- Inline errors:
 vim.diagnostic.config({
-  virtual_text = {
-    wrap = true,
-    spacing = 0,
-    max_width = 80,
-    prefix = "<>", -- Error icon
-  },
-  float = {
-    focusable = false,
-    source = "always",
-    wrap = true,
-    max_width = 80,
-    border = "rounded",
-  },
-  signs = true,
-  underline = true,
+	virtual_text = {
+		wrap = true,
+		spacing = 0,
+		max_width = 80,
+		prefix = "<>", -- Error icon
+	},
+	float = {
+		focusable = false,
+		source = "always",
+		wrap = true,
+		max_width = 80,
+		border = "rounded",
+	},
+	signs = true,
+	underline = true,
 })
