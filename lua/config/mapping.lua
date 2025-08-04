@@ -15,9 +15,9 @@ map({ "n", "v" }, "L", "$", { noremap = true, silent = true, desc = "Go to end o
 -- Go to the beginning of the line
 map({ "n", "v" }, "H", "^", { noremap = true, silent = true, desc = "Go to beginning of line" })
 -- Down 10 lines
-map("n", "J", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
+map({ "n", "v" }, "J", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
 -- Up 10 lines
-map("n", "K", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
+map({ "n", "v" }, "K", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
 -- Put a semicolon at the end of the line
 map("n", "<leader>;", "$beA;<Esc>", { noremap = true, silent = true, desc = "Add semicolon at end of line" })
 
@@ -141,21 +141,20 @@ map("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "Focus up wi
 -- Focus down window
 map("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "Focus down window" })
 
-
 -- COMMENT
 -- Toggle smart comment with Ctrl + /
-vim.keymap.set('n', '<leader>/', function()
-  require('utils.smart_comment').toggle_smart_comment()
-end, { desc = 'Toggle smart comment', noremap = true, silent = true })
+vim.keymap.set("n", "<leader>/", function()
+	require("utils.smart_comment").toggle_smart_comment()
+end, { desc = "Toggle smart comment", noremap = true, silent = true })
 
-vim.keymap.set('v', '<leader>/', function()
-  require('utils.smart_comment').toggle_visual_comment()
-end, { desc = 'Toggle visual comment', noremap = true, silent = true })
+vim.keymap.set("v", "<leader>/", function()
+	require("utils.smart_comment").toggle_visual_comment()
+end, { desc = "Toggle visual comment", noremap = true, silent = true })
 
-vim.keymap.set('n', '<C-/>', function()
-  require('utils.smart_comment').toggle_smart_comment()
-end, { desc = 'Toggle smart comment', noremap = true, silent = true })
+vim.keymap.set("n", "<C-/>", function()
+	require("utils.smart_comment").toggle_smart_comment()
+end, { desc = "Toggle smart comment", noremap = true, silent = true })
 
-vim.keymap.set('v', '<C-/>', function()
-  require('utils.smart_comment').toggle_visual_comment()
-end, { desc = 'Toggle visual comment', noremap = true, silent = true })
+vim.keymap.set("v", "<C-/>", function()
+	require("utils.smart_comment").toggle_visual_comment()
+end, { desc = "Toggle visual comment", noremap = true, silent = true })
