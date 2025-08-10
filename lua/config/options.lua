@@ -54,3 +54,11 @@ vim.diagnostic.config({
   underline = true,
 })
 
+-- Auto-format on save for Rust files
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.rs",
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+

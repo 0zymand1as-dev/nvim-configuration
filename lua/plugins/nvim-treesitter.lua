@@ -14,6 +14,8 @@ return {
         "css",
         "c",
         "cpp",
+        "rust",
+        "toml",
         "vim",
         "java",
       },

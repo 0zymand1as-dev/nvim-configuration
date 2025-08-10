@@ -18,8 +18,6 @@ map({ "n", "v" }, "H", "^", { noremap = true, silent = true, desc = "Go to begin
 map({ "n", "v" }, "J", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
 -- Up 10 lines
 map({ "n", "v" }, "K", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
--- Put a semicolon at the end of the line
-map("n", "<leader>;", "$beA;<Esc>", { noremap = true, silent = true, desc = "Add semicolon at end of line" })
 
 -- NEOTREE
 -- Open neotree in the right side
@@ -39,40 +37,6 @@ map("n", "<C-b>", require("telescope.builtin").buffers, { desc = "Find buffers (
 -- Fuzzy find help tags
 map("n", "<C-h>", require("telescope.builtin").help_tags, { desc = "Find help tags (Telescope)" })
 
--- LSP
--- Show hover documentation
-map("n", "<C-k>", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP hover docs" })
--- Go to definition under cursor
-map("n", "<leader>D", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
--- Show code actions (normal + visual)
-map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "LSP code actions" })
--- Format current buffer
-map("n", "<leader>ff", function()
-	vim.lsp.buf.format({ async = true })
-end, { noremap = true, silent = true, desc = "Format buffer" })
-
--- LSP DIAGNOSTICS
--- Show diagnostic popup manually
-map("n", "<leader>e", vim.diagnostic.open_float, {
-	noremap = true,
-	silent = true,
-	desc = "Show diagnostic error",
-})
-
--- Go to next diagnostic
-map("n", "]d", vim.diagnostic.goto_next, {
-	noremap = true,
-	silent = true,
-	desc = "Go to next diagnostic",
-})
-
--- Go to previous diagnostic
-map("n", "[d", vim.diagnostic.goto_prev, {
-	noremap = true,
-	silent = true,
-	desc = "Go to previous diagnostic",
-})
-
 -- COPILOT
 -- Accept suggestion
 map("i", "<C-j>", 'copilot#Accept("\\<CR>") . "\\<Esc>"', {
@@ -81,16 +45,17 @@ map("i", "<C-j>", 'copilot#Accept("\\<CR>") . "\\<Esc>"', {
 	silent = true,
 	desc = "Copilot: accept suggestion",
 })
+
 -- Accept next word from suggestion
 map("i", "<C-l>", "<Plug>(copilot-accept-word)", { silent = true, desc = "Copilot: accept next word" })
 -- Cancel current Copilot suggestion
-map("i", "<C-e>", "<Plug>(copilot-dismiss)", { silent = true, desc = "Copilot: dismiss suggestion" })
+map("i", "<C-h>", "<Plug>(copilot-dismiss)", { silent = true, desc = "Copilot: dismiss suggestion" })
 -- Show next suggestion
-map("i", "<M-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next suggestion" })
+map("i", "<C-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next suggestion" })
 -- Show previous suggestion
-map("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
+map("i", "<C-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
 -- Manually trigger suggestion
-map("i", "<M-s>", "<Plug>(copilot-suggest)", { silent = false, desc = "Copilot: trigger suggestion" })
+map("i", "<C-k>", "<Plug>(copilot-suggest)", { silent = false, desc = "Copilot: trigger suggestion" })
 -- Enable autocompletion
 map("n", "<leader>ce", ":Copilot enable<CR>", { silent = false, desc = "Copilot: enable suggestion" })
 -- Disable autocompletion
@@ -103,18 +68,12 @@ map({ "n", "v" }, "f", "<Plug>(easymotion-f)", {
 	silent = true,
 	desc = "Easymotion: search for character under cursor",
 })
+
 -- Search for character over cursor
 map({ "n", "v" }, "F", "<Plug>(easymotion-F)", {
 	noremap = true,
 	silent = true,
 	desc = "Easymotion: search for character over cursor",
-})
-
--- RMARKDOWN
-map("n", "<leader>md", ":RenderMarkdown toggle<CR>", {
-	noremap = true,
-	silent = true,
-	desc = "Toggle RenderMarkdown",
 })
 
 -- WINDOWS, BUFFERS, TABS
@@ -140,21 +99,14 @@ map("n", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "Focus left 
 map("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "Focus up window" })
 -- Focus down window
 map("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "Focus down window" })
+-- Resize panel left
+map("n", "<M-L>", ":vertical resize -2<CR>", { noremap = true, silent = true, desc = "Resize panel left" })
+-- Resize panel right
+map("n", "<M-H>", ":vertical resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel right" })
+-- Resize panel up
+map("n", "<M-K>", ":resize -2<CR>", { noremap = true, silent = true, desc = "Resize panel up" })
+-- Resize panel down
+map("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel down" })
 
--- COMMENT
--- Toggle smart comment with Ctrl + /
-vim.keymap.set("n", "<leader>/", function()
-	require("utils.smart_comment").toggle_smart_comment()
-end, { desc = "Toggle smart comment", noremap = true, silent = true })
 
-vim.keymap.set("v", "<leader>/", function()
-	require("utils.smart_comment").toggle_visual_comment()
-end, { desc = "Toggle visual comment", noremap = true, silent = true })
 
-vim.keymap.set("n", "<C-/>", function()
-	require("utils.smart_comment").toggle_smart_comment()
-end, { desc = "Toggle smart comment", noremap = true, silent = true })
-
-vim.keymap.set("v", "<C-/>", function()
-	require("utils.smart_comment").toggle_visual_comment()
-end, { desc = "Toggle visual comment", noremap = true, silent = true })
