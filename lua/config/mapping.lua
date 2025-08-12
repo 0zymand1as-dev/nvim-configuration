@@ -51,9 +51,9 @@ map("i", "<C-l>", "<Plug>(copilot-accept-word)", { silent = true, desc = "Copilo
 -- Cancel current Copilot suggestion
 map("i", "<C-h>", "<Plug>(copilot-dismiss)", { silent = true, desc = "Copilot: dismiss suggestion" })
 -- Show next suggestion
-map("i", "<C-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next suggestion" })
+map("i", "<M-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next suggestion" })
 -- Show previous suggestion
-map("i", "<C-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
+map("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
 -- Manually trigger suggestion
 map("i", "<C-k>", "<Plug>(copilot-suggest)", { silent = false, desc = "Copilot: trigger suggestion" })
 -- Enable autocompletion

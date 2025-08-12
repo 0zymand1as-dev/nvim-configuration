@@ -1,3 +1,4 @@
 return {
-  { "easymotion/vim-easymotion" }
+  { "easymotion/vim-easymotion" },
+  
 }
