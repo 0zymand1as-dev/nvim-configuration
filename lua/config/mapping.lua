@@ -22,9 +22,9 @@ map({ "n", "v" }, "K", "10k", { noremap = true, silent = true, desc = "Move up 1
 -- NEOTREE
 -- Open neotree in the right side
 map("n", "<leader>a", ":Neotree float <cr>", {
-	noremap = true,
-	silent = true,
-	desc = "Open Neotree",
+  noremap = true,
+  silent = true,
+  desc = "Open Neotree",
 })
 
 -- TELESCOPE
@@ -40,10 +40,10 @@ map("n", "<C-h>", require("telescope.builtin").help_tags, { desc = "Find help ta
 -- COPILOT
 -- Accept suggestion
 map("i", "<C-j>", 'copilot#Accept("\\<CR>") . "\\<Esc>"', {
-	expr = true,
-	replace_keycodes = false,
-	silent = true,
-	desc = "Copilot: accept suggestion",
+  expr = true,
+  replace_keycodes = false,
+  silent = true,
+  desc = "Copilot: accept suggestion",
 })
 
 -- Accept next word from suggestion
@@ -64,16 +64,16 @@ map("n", "<leader>cd", ":Copilot disable<CR>", { silent = false, desc = "Copilot
 -- EASYMOTION
 -- Search for character under cursor
 map({ "n", "v" }, "f", "<Plug>(easymotion-f)", {
-	noremap = true,
-	silent = true,
-	desc = "Easymotion: search for character under cursor",
+  noremap = true,
+  silent = true,
+  desc = "Easymotion: search for character under cursor",
 })
 
 -- Search for character over cursor
 map({ "n", "v" }, "F", "<Plug>(easymotion-F)", {
-	noremap = true,
-	silent = true,
-	desc = "Easymotion: search for character over cursor",
+  noremap = true,
+  silent = true,
+  desc = "Easymotion: search for character over cursor",
 })
 
 -- WINDOWS, BUFFERS, TABS
@@ -104,9 +104,29 @@ map("n", "<M-L>", ":vertical resize -2<CR>", { noremap = true, silent = true, de
 -- Resize panel right
 map("n", "<M-H>", ":vertical resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel right" })
 -- Resize panel up
-map("n", "<M-K>", ":resize -2<CR>", { noremap = true, silent = true, desc = "Resize panel up" })
+map("n", "<M-J>", ":resize -2<CR>", { noremap = true, silent = true, desc = "Resize panel up" })
 -- Resize panel down
-map("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel down" })
+map("n", "<M-K>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel down" })
 
-
-
+-- LSP
+-- Show inline errors
+map("n", "<leader>e", vim.diagnostic.open_float, {
+  noremap = true,
+  silent = true,
+})
+-- Go to definition
+map("n", "<leader>gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
+-- Hover
+map("n", "<leader>gk", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "Show hover information" })
+-- Code actions
+map("n", "<leader>ga", vim.lsp.buf.code_action, {
+  noremap = true,
+  silent = true,
+  desc = "Show code actions",
+})
+-- Formatting
+map("n", "<leader>gf", vim.lsp.buf.format, {
+  noremap = true,
+  silent = true,
+  desc = "Format code",
+})
