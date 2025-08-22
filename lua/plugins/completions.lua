@@ -1,48 +1,73 @@
 return {
-	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-		},
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		config = function()
-			local cmp = require("cmp")
-			require("luasnip.loaders.from_vscode").lazy_load()
+  {
+    "hrsh7th/cmp-nvim-lsp",
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
 
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-				mapping = {
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          -- Scroll documentation hacia abajo
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          -- Mostrar completions manualmente
-          ["<C-Space>"] = cmp.mapping.complete(),
-          -- Cancelar completion
-          ["<C-e>"] = cmp.mapping.abort(),
-          -- Confirmar selección
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
         },
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" }, -- For luasnip users.
-				}, {
-					{ name = "buffer" },
-				}),
-			})
-		end,
-	},
+
+        window = {
+          completion = cmp.config.window.bordered({
+            max_width = 60,
+            max_height = 15,
+          }),
+          documentation = cmp.config.window.bordered({
+            max_width = 80,
+            max_height = 20,
+            col_offset = 2,
+          }),
+        },
+
+        mapping = {
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        },
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }, {
+          { name = "buffer" },
+        }),
+      })
+    end,
+  },
 }

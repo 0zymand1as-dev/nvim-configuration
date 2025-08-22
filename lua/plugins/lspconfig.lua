@@ -8,29 +8,13 @@ return {
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		config = function()
-			require("mason-tool-installer").setup({
-				ensure_installed = {
-					-- Debuggers
-					"codelldb", -- C/C++/Rust debugger
-				},
-			})
+			require("mason-tool-installer").setup({})
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					-- Rust is handled by rustaceanvim, so no rust_analyzer here
-					"clangd",
-					"jsonls",
-					"lua_ls",
-					"pyright",
-					"ts_ls",
-					"vimls",
-					"bacon_ls",
-				},
-			})
+			require("mason-lspconfig").setup({})
 		end,
 	},
 	{
@@ -38,8 +22,6 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			-- Rust is handled by rustaceanvim plugin, so we skip rust_analyzer here
 
 			lspconfig.jsonls.setup({
 				capabilities = capabilities,
@@ -54,10 +36,6 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.bacon_ls.setup({
-				init_options = {
-					updateOnSave = true,
-					updateOnSaveWaitMillis = 1000,
-				},
 				capabilities = capabilities,
 			})
 		end,

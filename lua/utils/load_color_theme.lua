@@ -86,6 +86,104 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "@type.definition", { fg = colors["color11"], bold = true })
 	vim.api.nvim_set_hl(0, "@storageclass.typescript", { fg = colors["color13"], bold = true })
 
+	-- Java specific highlights
+	-- Java keywords and modifiers
+	vim.api.nvim_set_hl(0, "@keyword.java", { fg = colors["color13"], bold = true }) -- public, private, protected, static, final, etc.
+	vim.api.nvim_set_hl(0, "@keyword.modifier.java", { fg = colors["color9"], bold = true }) -- public, private, protected, static, final, abstract
+	vim.api.nvim_set_hl(0, "@keyword.control.java", { fg = colors["color11"], bold = true }) -- if, else, for, while, switch, do
+	vim.api.nvim_set_hl(0, "@keyword.control.flow.java", { fg = colors["color3"], bold = true }) -- return, break, continue
+	vim.api.nvim_set_hl(0, "@keyword.control.exception.java", { fg = colors["color1"], bold = true }) -- try, catch, finally, throw, throws
+	vim.api.nvim_set_hl(0, "@keyword.import.java", { fg = colors["color13"], bold = true }) -- import, package
+
+	-- Java storage and access modifiers
+	vim.api.nvim_set_hl(0, "@storageclass.java", { fg = colors["color9"], bold = true }) -- static, final, abstract, synchronized
+	vim.api.nvim_set_hl(0, "@keyword.storage.java", { fg = colors["color9"], bold = true }) -- class, interface, enum, extends, implements
+
+	-- Java types and classes
+	vim.api.nvim_set_hl(0, "@type.java", { fg = colors["color11"], bold = true }) -- User-defined class names
+	vim.api.nvim_set_hl(0, "@type.builtin.java", { fg = colors["color12"], bold = true }) -- int, String, boolean, char, etc.
+	vim.api.nvim_set_hl(0, "@type.class.java", { fg = colors["color11"], bold = true }) -- Class declarations
+	vim.api.nvim_set_hl(0, "@type.interface.java", { fg = colors["color14"], bold = true }) -- Interface names
+	vim.api.nvim_set_hl(0, "@type.enum.java", { fg = colors["color10"], bold = true }) -- Enum names
+	vim.api.nvim_set_hl(0, "@constructor.java", { fg = colors["color11"], bold = true }) -- Constructor methods
+
+	-- Java variables and identifiers
+	vim.api.nvim_set_hl(0, "@variable.java", { fg = colors["color6"] }) -- Local variables
+	vim.api.nvim_set_hl(0, "@variable.member.java", { fg = colors["color7"], italic = true }) -- Instance variables
+	vim.api.nvim_set_hl(0, "@variable.static.java", { fg = colors["color14"], italic = true }) -- Static variables
+	vim.api.nvim_set_hl(0, "@field.java", { fg = colors["color7"], italic = true }) -- Class fields
+	vim.api.nvim_set_hl(0, "@property.java", { fg = colors["color14"] }) -- Object properties
+
+	-- Java functions and methods
+	vim.api.nvim_set_hl(0, "@function.java", { fg = colors["color2"], bold = true }) -- Method definitions
+	vim.api.nvim_set_hl(0, "@function.call.java", { fg = colors["color4"], italic = true }) -- Method calls
+	vim.api.nvim_set_hl(0, "@function.method.java", { fg = colors["color5"], bold = true }) -- Instance methods
+	vim.api.nvim_set_hl(0, "@function.static.java", { fg = colors["color2"], bold = true }) -- Static methods
+	vim.api.nvim_set_hl(0, "@function.builtin.java", { fg = colors["color3"], bold = true }) -- Built-in methods like System.out.println
+
+	-- Java parameters and arguments
+	vim.api.nvim_set_hl(0, "@parameter.java", { fg = colors["color7"], italic = true }) -- Method parameters
+	vim.api.nvim_set_hl(0, "@parameter.this.java", { fg = colors["color5"], italic = true }) -- 'this' keyword
+	vim.api.nvim_set_hl(0, "@parameter.super.java", { fg = colors["color5"], italic = true }) -- 'super' keyword
+
+	-- Java constants and literals
+	vim.api.nvim_set_hl(0, "@constant.java", { fg = colors["color5"], bold = true }) -- Final static variables
+	vim.api.nvim_set_hl(0, "@constant.builtin.java", { fg = colors["color10"], bold = true }) -- true, false, null
+	vim.api.nvim_set_hl(0, "@number.java", { fg = colors["color14"] }) -- Numeric literals
+	vim.api.nvim_set_hl(0, "@number.float.java", { fg = colors["color6"] }) -- Float and double literals
+	vim.api.nvim_set_hl(0, "@boolean.java", { fg = colors["color10"], bold = true }) -- true, false
+
+	-- Java strings and characters
+	vim.api.nvim_set_hl(0, "@string.java", { fg = colors["color15"] }) -- String literals
+	vim.api.nvim_set_hl(0, "@string.escape.java", { fg = colors["color6"], bold = true }) -- Escape sequences
+	vim.api.nvim_set_hl(0, "@character.java", { fg = colors["color13"] }) -- Character literals
+
+	-- Java operators
+	vim.api.nvim_set_hl(0, "@operator.java", { fg = colors["color1"], bold = true }) -- Arithmetic and logical operators
+	vim.api.nvim_set_hl(0, "@operator.assignment.java", { fg = colors["color12"], bold = true }) -- Assignment operators
+	vim.api.nvim_set_hl(0, "@operator.comparison.java", { fg = colors["color3"], bold = true }) -- Comparison operators
+
+	-- Java annotations
+	vim.api.nvim_set_hl(0, "@annotation.java", { fg = colors["color3"], bold = true }) -- @Override, @Deprecated, etc.
+	vim.api.nvim_set_hl(0, "@symbol.java", { fg = colors["color3"] }) -- @ symbol for annotations
+
+	-- Java generics and wildcards
+	vim.api.nvim_set_hl(0, "@type.parameter.java", { fg = colors["color12"], italic = true }) -- Generic type parameters (T, E, K, V)
+	vim.api.nvim_set_hl(0, "@type.wildcard.java", { fg = colors["color6"], italic = true }) -- Wildcard types (? extends, ? super)
+
+	-- Java packages and imports
+	vim.api.nvim_set_hl(0, "@namespace.java", { fg = colors["color5"] }) -- Package names
+	vim.api.nvim_set_hl(0, "@module.java", { fg = colors["color5"] }) -- Imported modules
+
+	-- Java punctuation and delimiters
+	vim.api.nvim_set_hl(0, "@punctuation.delimiter.java", { fg = colors["color4"] }) -- Semicolons, commas
+	vim.api.nvim_set_hl(0, "@punctuation.bracket.java", { fg = colors["color5"] }) -- Brackets, parentheses, braces
+	vim.api.nvim_set_hl(0, "@punctuation.special.java", { fg = colors["color7"] }) -- Special punctuation
+
+	-- Java exception handling
+	vim.api.nvim_set_hl(0, "@exception.java", { fg = colors["color1"], bold = true }) -- Exception class names
+	vim.api.nvim_set_hl(0, "@type.exception.java", { fg = colors["color1"], bold = true }) -- Exception types
+
+	-- Java lambda expressions (Java 8+)
+	vim.api.nvim_set_hl(0, "@function.lambda.java", { fg = colors["color4"], italic = true }) -- Lambda expressions
+	vim.api.nvim_set_hl(0, "@operator.lambda.java", { fg = colors["color3"], bold = true }) -- -> operator
+
+	-- Java stream operations (Java 8+)
+	vim.api.nvim_set_hl(0, "@function.stream.java", { fg = colors["color6"], italic = true }) -- Stream operations like map, filter, collect
+
+	-- Java documentation comments
+	vim.api.nvim_set_hl(0, "@comment.documentation.java", { fg = colors["color8"], italic = true }) -- Javadoc comments
+	vim.api.nvim_set_hl(0, "@tag.java", { fg = colors["color3"], bold = true }) -- Javadoc tags like @param, @return
+
+	-- Java static blocks and initializers
+	vim.api.nvim_set_hl(0, "@keyword.static.java", { fg = colors["color9"], bold = true }) -- static blocks
+
+	-- Java enum values
+	vim.api.nvim_set_hl(0, "@constant.enum.java", { fg = colors["color10"], bold = true }) -- Enum constants
+
+	-- Java method references (Java 8+)
+	vim.api.nvim_set_hl(0, "@operator.method_reference.java", { fg = colors["color3"], bold = true }) -- :: operator
+
 	-- Python specific highlights
 	-- Python variable declarations and assignments
 	vim.api.nvim_set_hl(0, "@variable.python", { fg = colors["color6"] })
