@@ -19,6 +19,10 @@ map({ "n", "v" }, "H", "^", { noremap = true, silent = true, desc = "Go to begin
 map({ "n", "v" }, "J", "10j", { noremap = true, silent = true, desc = "Move down 10 lines" })
 -- Up 10 lines
 map({ "n", "v" }, "K", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
+-- Clear search highlight
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true })
+-- Sellect all
+vim.api.nvim_set_keymap("n", "<C-a>", "gg0VG$", { noremap = true, silent = true })
 
 -- NEOTREE
 -- Open neotree in the right side
@@ -105,9 +109,9 @@ map("n", "<M-L>", ":vertical resize -2<CR>", { noremap = true, silent = true, de
 -- Resize panel right
 map("n", "<M-H>", ":vertical resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel right" })
 -- Resize panel up
-map("n", "<M-J>", ":resize -2<CR>", { noremap = true, silent = true, desc = "Resize panel up" })
+map("n", "<M-K>", ":resize -2<CR>", { noremap = true, silent = true, desc = "Resize panel up" })
 -- Resize panel down
-map("n", "<M-K>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel down" })
+map("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Resize panel down" })
 
 -- LSP
 -- Show inline errors
@@ -133,8 +137,7 @@ map("n", "<leader>gf", vim.lsp.buf.format, {
 })
 -- Better hover with navigation
 vim.keymap.set("n", "<leader>k", hover_with_controls, {
-  noremap = true,
-  silent = true,
-  desc = "Show hover information (navegable)",
+	noremap = true,
+	silent = true,
+	desc = "Show hover information (navegable)",
 })
-
