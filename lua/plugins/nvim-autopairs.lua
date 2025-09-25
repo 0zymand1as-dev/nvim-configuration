@@ -8,8 +8,8 @@ return {
 				ts_config = {
 					lua = { "string" },
 					javascript = { "template_string" },
-          c = {"string", "comment"},
-          cpp = {"string", "comment"},
+					c = { "string", "comment" },
+					cpp = { "string", "comment" },
 				},
 				disable_filetype = { "TelescopePrompt", "vim" },
 			})

@@ -15,8 +15,21 @@ vim.opt.termguicolors = true
 -- Load theme from kitty config:
 local theme = require("utils.load_color_theme")
 local path = vim.fn.expand("~/.config/kitty/theme.conf")
-local kitty_colors = theme.load_kitty_theme(path)
-theme.apply_to_nvim(kitty_colors)
+
+-- Safely load the theme from kitty config file
+local file = io.open(path, "r")
+if file then
+  file:close() -- Close the file handle immediately after checking
+  local ok, err = pcall(function()
+    local kitty_colors = theme.load_kitty_theme(path)
+    theme.apply_to_nvim(kitty_colors)
+  end)
+  if not ok then
+    vim.notify("Error loading kitty theme: " .. err, vim.log.levels.ERROR)
+  end
+else
+  vim.notify("Kitty theme file not found at " .. path .. ". Using default colors.", vim.log.levels.WARN)
+end
 
 -- Global padding border:
 vim.opt.fillchars = {
