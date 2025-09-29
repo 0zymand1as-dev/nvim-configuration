@@ -4,17 +4,21 @@ return {
 		main = "ibl",
 		opts = {},
 		config = function()
-			-- Definir los colores highlight usando los que ya tienes configurados
-			local highlight = {
-				"RainbowCyan",
-				"RainbowYellow",
-				"RainbowBlue",
-				"RainbowOrange",
-				"RainbowGreen",
-				"RainbowViolet",
-			}
+			local highlight
 
-			-- Configurar el plugin
+			if vim.g.color_theme_loaded == false then
+				highlight = { "Comment" }
+			else
+				highlight = {
+					"RainbowCyan",
+					"RainbowYellow",
+					"RainbowBlue",
+					"RainbowOrange",
+					"RainbowGreen",
+					"RainbowViolet",
+				}
+			end
+
 			require("ibl").setup({
 				indent = {
 					char = "┊",
@@ -44,7 +48,6 @@ return {
 				},
 			})
 
-			-- Configurar listchars para mostrar tabulaciones
 			vim.opt.list = true
 			vim.opt.listchars = {
 				tab = "┊ ",
@@ -54,7 +57,6 @@ return {
 				nbsp = "␣",
 			}
 
-			-- Highlight para las tabulaciones visibles
 			vim.api.nvim_create_autocmd("ColorScheme", {
 				pattern = "*",
 				callback = function()

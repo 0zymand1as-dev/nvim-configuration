@@ -18,7 +18,7 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "jsonls", "lua_ls", "tsserver", "vimls", "bacon_ls" },
+				ensure_installed = { "jsonls", "lua_ls", "vimls" },
 				handlers = {
 					function(server_name)
 						require("lspconfig")[server_name].setup({
