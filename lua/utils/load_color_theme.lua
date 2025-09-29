@@ -45,6 +45,7 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "@character.special", { fg = colors["color14"] })
 	vim.api.nvim_set_hl(0, "@string.escape", { fg = colors["color6"] })
 	vim.api.nvim_set_hl(0, "SpecialChar", { fg = colors["color14"] })
+	vim.api.nvim_set_hl(0, "Special", { fg = colors["color13"] })
 	vim.api.nvim_set_hl(0, "@character", { fg = colors["color13"] })
 
 	-- Import/Export keywords

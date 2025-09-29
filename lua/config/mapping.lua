@@ -27,9 +27,9 @@ vim.api.nvim_set_keymap("n", "<C-a>", "gg0VG$", { noremap = true, silent = true 
 -- NEOTREE
 -- Open neotree in the right side
 map("n", "<leader>a", ":Neotree float <cr>", {
-  noremap = true,
-  silent = true,
-  desc = "Open Neotree",
+	noremap = true,
+	silent = true,
+	desc = "Open Neotree",
 })
 
 -- TELESCOPE
@@ -41,14 +41,15 @@ map("n", "<C-f>", require("telescope.builtin").live_grep, { desc = "Live grep (T
 map("n", "<C-b>", require("telescope.builtin").buffers, { desc = "Find buffers (Telescope)" })
 -- Fuzzy find help tags
 map("n", "<C-h>", require("telescope.builtin").help_tags, { desc = "Find help tags (Telescope)" })
+-- Trouble from Telescope
 
 -- COPILOT
 -- Accept suggestion
 map("i", "<C-j>", 'copilot#Accept("\\<CR>") . "\\<Esc>"', {
-  expr = true,
-  replace_keycodes = false,
-  silent = true,
-  desc = "Copilot: accept suggestion",
+	expr = true,
+	replace_keycodes = false,
+	silent = true,
+	desc = "Copilot: accept suggestion",
 })
 
 -- Accept next word from suggestion
@@ -69,16 +70,16 @@ map("n", "<leader>cd", ":Copilot disable<CR>", { silent = false, desc = "Copilot
 -- EASYMOTION
 -- Search for character under cursor
 map({ "n", "v" }, "<leader>ff", "<Plug>(easymotion-f)", {
-  noremap = true,
-  silent = true,
-  desc = "Easymotion: search for character under cursor",
+	noremap = true,
+	silent = true,
+	desc = "Easymotion: search for character under cursor",
 })
 
 -- Search for character over cursor
 map({ "n", "v" }, "<leader>fF", "<Plug>(easymotion-F)", {
-  noremap = true,
-  silent = true,
-  desc = "Easymotion: search for character over cursor",
+	noremap = true,
+	silent = true,
+	desc = "Easymotion: search for character over cursor",
 })
 
 -- WINDOWS, BUFFERS, TABS
@@ -116,8 +117,8 @@ map("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Res
 -- LSP
 -- Show inline errors
 map("n", "<leader>e", vim.diagnostic.open_float, {
-  noremap = true,
-  silent = true,
+	noremap = true,
+	silent = true,
 })
 -- Go to definition
 map("n", "<leader>D", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
@@ -125,21 +126,21 @@ map("n", "<leader>D", vim.lsp.buf.definition, { noremap = true, silent = true, d
 -- map("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "Show hover information" })
 -- Code actions
 map("n", "<leader>ca", vim.lsp.buf.code_action, {
-  noremap = true,
-  silent = true,
-  desc = "Show code actions",
+	noremap = true,
+	silent = true,
+	desc = "Show code actions",
 })
 -- Formatting
 map("n", "<leader>gf", vim.lsp.buf.format, {
-  noremap = true,
-  silent = true,
-  desc = "Format code",
+	noremap = true,
+	silent = true,
+	desc = "Format code",
 })
 -- Better hover with navigation
 vim.keymap.set("n", "<leader>k", hover_with_controls, {
-  noremap = true,
-  silent = true,
-  desc = "Show hover information (navegable)",
+	noremap = true,
+	silent = true,
+	desc = "Show hover information (navegable)",
 })
 
 -- DAP (Debug Adapter Protocol)
@@ -147,57 +148,57 @@ local dap = require("dap")
 local dapui = require("dapui")
 
 map("n", "<leader>dc", dap.continue, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Continue / Start debugging",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Continue / Start debugging",
 })
 map("n", "<leader>db", dap.toggle_breakpoint, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Toggle breakpoint",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Toggle breakpoint",
 })
 map("n", "<leader>dB", function()
-  dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Set conditional breakpoint",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Set conditional breakpoint",
 })
 map("n", "<leader>do", dap.step_over, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Step over",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Step over",
 })
 map("n", "<leader>di", dap.step_into, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Step into",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Step into",
 })
 map("n", "<leader>dO", dap.step_out, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Step out",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Step out",
 })
 map("n", "<leader>dr", dap.repl.open, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Open REPL",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Open REPL",
 })
 map("n", "<leader>dl", dap.run_last, {
-  noremap = true,
-  silent = true,
-  desc = "DAP: Run last session",
+	noremap = true,
+	silent = true,
+	desc = "DAP: Run last session",
 })
 map("n", "<leader>du", dapui.toggle, {
-  noremap = true,
-  silent = true,
-  desc = "DAP UI: Toggle",
+	noremap = true,
+	silent = true,
+	desc = "DAP UI: Toggle",
 })
 
 -- TERMINAL
 -- Toggle floating terminal
-map("n", "<leader>t", "<cmd>ToggleTerm<cr>", {
-  noremap = true,
-  silent = true,
-  desc = "Toggle floating terminal",
+map({"n", "t"}, "<M-Tab>", "<cmd>ToggleTerm<cr>", {
+	noremap = true,
+	silent = true,
+	desc = "Toggle floating terminal",
 })

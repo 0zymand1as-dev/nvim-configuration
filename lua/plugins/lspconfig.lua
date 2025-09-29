@@ -13,30 +13,19 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
-			require("mason-lspconfig").setup({})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			lspconfig.jsonls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.vimls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.bacon_ls.setup({
-				capabilities = capabilities,
+			require("mason-lspconfig").setup({
+				ensure_installed = { "jsonls", "lua_ls", "tsserver", "vimls", "bacon_ls" },
+				handlers = {
+					function(server_name)
+						require("lspconfig")[server_name].setup({
+							capabilities = capabilities,
+						})
+					end,
+				},
 			})
 		end,
 	},
