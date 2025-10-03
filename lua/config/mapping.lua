@@ -61,11 +61,11 @@ map("i", "<M-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next
 -- Show previous suggestion
 map("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
 -- Manually trigger suggestion
-map("i", "<C-k>", "<Plug>(copilot-suggest)", { silent = false, desc = "Copilot: trigger suggestion" })
+map("i", "<C-k>", "<Plug>(copilot-suggest)", { silent = true, desc = "Copilot: trigger suggestion" })
 -- Enable autocompletion
-map("n", "<leader>ce", ":Copilot enable<CR>", { silent = false, desc = "Copilot: enable suggestion" })
+map("n", "<leader>ce", ":Copilot enable<CR>", { silent = true, desc = "Copilot: enable suggestion" })
 -- Disable autocompletion
-map("n", "<leader>cd", ":Copilot disable<CR>", { silent = false, desc = "Copilot: disable suggestion" })
+map("n", "<leader>cd", ":Copilot disable<CR>", { silent = true, desc = "Copilot: disable suggestion" })
 
 -- EASYMOTION
 -- Search for character under cursor
@@ -201,4 +201,17 @@ map({"n", "t"}, "<M-Tab>", "<cmd>ToggleTerm<cr>", {
 	noremap = true,
 	silent = true,
 	desc = "Toggle floating terminal",
+})
+
+-- Reload kitty theme
+vim.api.nvim_create_user_command('ReloadKittyTheme', function()
+  require('utils.load_color_theme').reload()
+end, {
+  desc = 'Reload kitty theme'
+})
+
+map('n', '<leader>cr', '<cmd>ReloadKittyTheme<CR>', {
+  noremap = true,
+  silent = true,
+  desc = 'Reload kitty theme'
 })

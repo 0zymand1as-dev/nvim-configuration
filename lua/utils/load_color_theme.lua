@@ -321,4 +321,42 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "AlphaButtons", { fg = colors["color13"] })
 end
 
+
+function M.reload()
+	local path = vim.fn.expand("~/.config/kitty/theme.conf")
+	local file = io.open(path, "r")
+	if file then
+		file:close()
+		local ok, err = pcall(function()
+			local kitty_colors = M.load_kitty_theme(path)
+			M.apply_to_nvim(kitty_colors)
+			vim.notify("Kitty theme reloaded successfully.", vim.log.levels.INFO)
+		end)
+		if not ok then
+			vim.notify("Error reloading kitty theme: " .. err, vim.log.levels.ERROR)
+		end
+	else
+		vim.notify("Kitty theme file not found at " .. path, vim.log.levels.WARN)
+	end
+end
+
+local timer = vim.loop.new_timer()
+local function debounced_reload()
+	timer:stop()
+	timer:start(100, 0, function()
+		vim.schedule(function()
+			require('utils.load_color_theme').reload()
+		end)
+	end)
+end
+
+function M.watch_for_changes()
+	local path = vim.fn.expand("~/.config/kitty/theme.conf")
+	local watcher = vim.loop.new_fs_event()
+	if not watcher then
+		return
+	end
+	watcher:start(path, {}, debounced_reload)
+end
+
 return M
