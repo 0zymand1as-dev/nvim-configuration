@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 local hover_with_controls = require("utils.hover_with_controls").hover_with_controls
 
+
 -- NVIM
 -- Unable arrows keys globally
 map("n", "<Up>", "<Nop>", { noremap = true, silent = true })
@@ -41,7 +42,8 @@ map("n", "<C-f>", require("telescope.builtin").live_grep, { desc = "Live grep (T
 map("n", "<C-b>", require("telescope.builtin").buffers, { desc = "Find buffers (Telescope)" })
 -- Fuzzy find help tags
 map("n", "<C-h>", require("telescope.builtin").help_tags, { desc = "Find help tags (Telescope)" })
--- Trouble from Telescope
+-- Fuzzy find git files
+map("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Find git files (Telescope)" })
 
 -- COPILOT
 -- Accept suggestion
@@ -61,11 +63,21 @@ map("i", "<M-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next
 -- Show previous suggestion
 map("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
 -- Manually trigger suggestion
-map("i", "<C-k>", "<Plug>(copilot-suggest)", { silent = true, desc = "Copilot: trigger suggestion" })
+map("i", "<C-k>", function()
+  vim.api.nvim_feedkeys(vim.keycode("<Plug>(copilot-suggest)"), "n", false)
+  vim.notify("Copilot: suggestion triggered")
+end, { silent = true, desc = "Copilot: trigger suggestion" })
+
 -- Enable autocompletion
-map("n", "<leader>ce", ":Copilot enable<CR>", { silent = true, desc = "Copilot: enable suggestion" })
+map("n", "<leader>ce", function()
+	vim.cmd("Copilot enable")
+	vim.notify("Copilot enable")
+end, { desc = "Copilot: enable suggestion" })
 -- Disable autocompletion
-map("n", "<leader>cd", ":Copilot disable<CR>", { silent = true, desc = "Copilot: disable suggestion" })
+map("n", "<leader>cd", function()
+	vim.cmd("Copilot disable")
+	vim.notify("Copilot disabled")
+end, { desc = "Copilot: disable suggestion" })
 
 -- EASYMOTION
 -- Search for character under cursor
@@ -87,6 +99,8 @@ map({ "n", "v" }, "<leader>fF", "<Plug>(easymotion-F)", {
 map("n", "<M-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save current buffer" })
 -- Close only current buffer
 map("n", "<M-w>", ":bd<CR>", { noremap = true, silent = true, desc = "Close current buffer" })
+-- Close all buffers and exit
+map("n", "<M-q>", ":qa!<CR>", { noremap = true, silent = true, desc = "Close all buffers and exit" })
 -- Open new tab
 map("n", "<M-e>", ":tabnew<CR>", { noremap = true, silent = true, desc = "Open new tab" })
 -- Vertical split
@@ -197,21 +211,21 @@ map("n", "<leader>du", dapui.toggle, {
 
 -- TERMINAL
 -- Toggle floating terminal
-map({"n", "t"}, "<M-Tab>", "<cmd>ToggleTerm<cr>", {
+map({ "n", "t" }, "<M-Tab>", "<cmd>ToggleTerm<cr>", {
 	noremap = true,
 	silent = true,
 	desc = "Toggle floating terminal",
 })
 
 -- Reload kitty theme
-vim.api.nvim_create_user_command('ReloadKittyTheme', function()
-  require('utils.load_color_theme').reload()
+vim.api.nvim_create_user_command("ReloadKittyTheme", function()
+	require("utils.load_color_theme").reload()
 end, {
-  desc = 'Reload kitty theme'
+	desc = "Reload kitty theme",
 })
 
-map('n', '<leader>cr', '<cmd>ReloadKittyTheme<CR>', {
-  noremap = true,
-  silent = true,
-  desc = 'Reload kitty theme'
+map("n", "<leader>cr", "<cmd>ReloadKittyTheme<CR>", {
+	noremap = true,
+	silent = true,
+	desc = "Reload kitty theme",
 })
