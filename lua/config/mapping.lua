@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 local hover_with_controls = require("utils.hover_with_controls").hover_with_controls
-
+local error_hover = require("utils.error_hover").error_hover
 
 -- NVIM
 -- Unable arrows keys globally
@@ -21,9 +21,15 @@ map({ "n", "v" }, "J", "10j", { noremap = true, silent = true, desc = "Move down
 -- Up 10 lines
 map({ "n", "v" }, "K", "10k", { noremap = true, silent = true, desc = "Move up 10 lines" })
 -- Clear search highlight
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true })
 -- Sellect all
-vim.api.nvim_set_keymap("n", "<C-a>", "gg0VG$", { noremap = true, silent = true })
+map("n", "<C-a>", "gg0VG$", { noremap = true, silent = true })
+-- Undu with shift U
+map("n", "U", "<C-r>", { noremap = true, silent = true })
+
+-- Swap p and P to have paste before cursor as default
+map("n", "p", "P", { noremap = true, silent = true })
+map("n", "P", "p", { noremap = true, silent = true })
 
 -- NEOTREE
 -- Open neotree in the right side
@@ -64,8 +70,8 @@ map("i", "<M-]>", "<Plug>(copilot-next)", { silent = true, desc = "Copilot: next
 map("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true, desc = "Copilot: previous suggestion" })
 -- Manually trigger suggestion
 map("i", "<C-k>", function()
-  vim.api.nvim_feedkeys(vim.keycode("<Plug>(copilot-suggest)"), "n", false)
-  vim.notify("Copilot: suggestion triggered")
+	vim.api.nvim_feedkeys(vim.keycode("<Plug>(copilot-suggest)"), "n", false)
+	vim.notify("Copilot: suggestion triggered")
 end, { silent = true, desc = "Copilot: trigger suggestion" })
 
 -- Enable autocompletion
@@ -130,7 +136,7 @@ map("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true, desc = "Res
 
 -- LSP
 -- Show inline errors
-map("n", "<leader>e", vim.diagnostic.open_float, {
+map("n", "<leader>e", error_hover, {
 	noremap = true,
 	silent = true,
 })

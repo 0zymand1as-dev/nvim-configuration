@@ -17,6 +17,7 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "Normal", { fg = colors["foreground"], bg = colors["background"] })
 	vim.api.nvim_set_hl(0, "Cursor", { fg = colors["cursor_text_color"], bg = colors["cursor"] })
 	vim.api.nvim_set_hl(0, "Visual", { fg = colors["selection_foreground"], bg = colors["selection_background"] })
+	vim.api.nvim_set_hl(0, "CustomHover", { fg = colors["foreground"] })
 
 	-- Base syntax highlighting
 	vim.api.nvim_set_hl(0, "Comment", { fg = colors["color8"], italic = true })
@@ -321,7 +322,6 @@ function M.apply_to_nvim(colors)
 	vim.api.nvim_set_hl(0, "AlphaButtons", { fg = colors["color13"] })
 end
 
-
 function M.reload()
 	local path = vim.fn.expand("~/.config/kitty/theme.conf")
 	local file = io.open(path, "r")
@@ -345,7 +345,7 @@ local function debounced_reload()
 	timer:stop()
 	timer:start(100, 0, function()
 		vim.schedule(function()
-			require('utils.load_color_theme').reload()
+			require("utils.load_color_theme").reload()
 		end)
 	end)
 end
