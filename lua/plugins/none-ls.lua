@@ -6,7 +6,7 @@ return {
 			sources = {
 				-- Formatters
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.prettier.with({ extra_args = { "--bracket-same-line", "false" } }),
 				null_ls.builtins.formatting.rustfmt,
 			},
 		})

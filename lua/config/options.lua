@@ -42,7 +42,7 @@ vim.diagnostic.config({
 		wrap = true,
 		spacing = 0,
 		max_width = 80,
-		prefix = "<>", -- Error icon
+		prefix = " ", -- Error icon
 	},
 	float = {
 		focusable = false,
