@@ -11,7 +11,7 @@ M.error_hover = function()
   local bufnr, winnr = vim.diagnostic.open_float(nil, float_opts)
 
   if winnr and bufnr then
-    vim.wo[winnr].winhighlight = "Normal:CustomHover,FloatBorder:CustomHoverBorder"
+    vim.wo[winnr].winhighlight = "Normal:None,FloatBorder:Border2"
 
     local current_line = vim.api.nvim_win_get_cursor(0)[1]
     local current_buf = vim.api.nvim_get_current_buf()

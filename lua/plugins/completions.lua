@@ -28,11 +28,13 @@ return {
           completion = cmp.config.window.bordered({
             max_width = 60,
             max_height = 15,
+            winhighlight = "Normal:None,FloatBorder:Border2",
           }),
           documentation = cmp.config.window.bordered({
             max_width = 80,
             max_height = 20,
             col_offset = 2,
+            winhighlight = "Normal:None,FloatBorder:Border2",
           }),
         },
 

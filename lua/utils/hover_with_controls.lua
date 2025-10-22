@@ -137,7 +137,7 @@ function M.hover_with_controls()
 
 				local hover_win = vim.api.nvim_open_win(hover_bufnr, true, float_opts)
 
-				vim.wo[hover_win].winhighlight = "Normal:CustomHover,FloatBorder:CustomHoverBorder"
+				vim.wo[hover_win].winhighlight = "Normal:CustomHover,FloatBorder:Border2"
 				vim.wo[hover_win].wrap = true
 				vim.wo[hover_win].linebreak = true
 
