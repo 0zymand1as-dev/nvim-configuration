@@ -16,18 +16,15 @@ vim.opt.termguicolors = true
 local theme = require("utils.load_color_theme")
 theme.reload()
 
--- Start watching for theme changes
-theme.watch_for_changes()
-
 -- Global padding border:
 vim.opt.fillchars = {
-	vert = "│",
-	horiz = "─",
-	horizup = "┬",
-	horizdown = "┴",
-	vertleft = "├",
-	vertright = "┤",
-	verthoriz = "┼",
+  vert = "│",
+  horiz = "─",
+  horizup = "┬",
+  horizdown = "┴",
+  vertleft = "├",
+  vertright = "┤",
+  verthoriz = "┼",
 }
 
 -- Indentation config:
@@ -38,21 +35,21 @@ vim.cmd("set shiftwidth=2")
 
 -- Inline errors:
 vim.diagnostic.config({
-	virtual_text = {
-		wrap = true,
-		spacing = 0,
-		max_width = 80,
-		prefix = " ", -- Error icon
-	},
-	float = {
-		focusable = false,
-		source = "always",
-		wrap = true,
-		max_width = 80,
-		border = "rounded",
-	},
-	signs = true,
-	underline = true,
+  virtual_text = {
+    wrap = true,
+    spacing = 0,
+    max_width = 80,
+    prefix = " ", -- Error icon
+  },
+  float = {
+    focusable = false,
+    source = "always",
+    wrap = true,
+    max_width = 80,
+    border = "rounded",
+  },
+  signs = true,
+  underline = true,
 })
 
 vim.highlight.priorities.semantic_tokens = 95

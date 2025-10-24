@@ -18,9 +18,9 @@ function M.apply_to_nvim(colors)
   vim.api.nvim_set_hl(0, "Cursor", { fg = colors["cursor_text_color"], bg = colors["cursor"] })
   vim.api.nvim_set_hl(0, "Visual", { fg = colors["selection_foreground"], bg = colors["selection_background"] })
   vim.api.nvim_set_hl(0, "CustomHover", { fg = colors["foreground"] })
-  vim.api.nvim_set_hl(0, "Border1", { fg = colors["color8"]})
-  vim.api.nvim_set_hl(0, "Border2", { fg = colors["color6"]})
-  vim.api.nvim_set_hl(0, "Border3", { fg = colors["color10"]})
+  vim.api.nvim_set_hl(0, "Border1", { fg = colors["color8"] })
+  vim.api.nvim_set_hl(0, "Border2", { fg = colors["color6"] })
+  vim.api.nvim_set_hl(0, "Border3", { fg = colors["color10"] })
 
   -- Base syntax highlighting
   vim.api.nvim_set_hl(0, "Comment", { fg = colors["color8"], italic = true })
@@ -341,25 +341,6 @@ function M.reload()
   else
     vim.notify("Kitty theme file not found at " .. path, vim.log.levels.WARN)
   end
-end
-
-local timer = vim.loop.new_timer()
-local function debounced_reload()
-  timer:stop()
-  timer:start(100, 0, function()
-    vim.schedule(function()
-      require("utils.load_color_theme").reload()
-    end)
-  end)
-end
-
-function M.watch_for_changes()
-  local path = vim.fn.expand("~/.config/kitty/theme.conf")
-  local watcher = vim.loop.new_fs_event()
-  if not watcher then
-    return
-  end
-  watcher:start(path, {}, debounced_reload)
 end
 
 return M

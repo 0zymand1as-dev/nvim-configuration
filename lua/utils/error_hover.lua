@@ -2,7 +2,7 @@ local M = {}
 
 M.error_hover = function()
   local float_opts = {
-    focusable = false, -- Dejarlo no-focusable es mejor para hovers
+    focusable = false,
     close_events = { "BufLeave", "InsertEnter" },
     border = "rounded",
     source = "always",
