@@ -28,13 +28,6 @@ return {
 
     alpha.setup(dashboard.opts)
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "AlphaReady",
-      callback = function()
-        vim.cmd("set showtabline=0")
-      end,
-    })
-
     vim.api.nvim_create_autocmd("VimEnter", {
       callback = function()
         local arg = vim.fn.argv()[1]

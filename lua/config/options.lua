@@ -28,7 +28,7 @@ vim.opt.fillchars = {
 }
 
 -- Indentation config:
-vim.cmd("set expandtab")
+ vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
@@ -53,3 +53,38 @@ vim.diagnostic.config({
 })
 
 vim.highlight.priorities.semantic_tokens = 95
+
+
+-- Autosave options
+local state = vim.fn.stdpath("state")
+vim.fn.mkdir(state .. "/undo", "p")
+vim.fn.mkdir(state .. "/swap", "p")
+vim.fn.mkdir(state .. "/backup", "p")
+
+vim.opt.undofile = true
+vim.opt.undodir = state .. "/undo//"
+
+vim.opt.swapfile = true
+vim.opt.directory = state .. "/swap//"
+
+vim.opt.backup = true
+vim.opt.backupdir = state .. "/backup//"
+
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+vim.opt.updatetime = 1000
+
+vim.api.nvim_create_autocmd("FocusLost", {
+  callback = function()
+    vim.cmd("silent! wall")
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.bo.modified then
+      vim.cmd("silent! write")
+    end
+  end,
+})
+

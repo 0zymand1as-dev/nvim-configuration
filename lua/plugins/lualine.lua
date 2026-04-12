@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  opts = function()
+  config = function()
     require("lualine").setup({
       options = {
         icons_enabled = true,
@@ -16,7 +16,7 @@ return {
         },
         ignore_focus = {},
         always_divide_middle = true,
-        always_show_tabline = true,
+        show_tabline = false,
         globalstatus = false,
         refresh = {
           statusline = 1000,
@@ -53,7 +53,6 @@ return {
         lualine_y = {},
         lualine_z = { "location" },
       },
-      tabline = {},
       winbar = {},
       inactive_winbar = {},
       extensions = {},

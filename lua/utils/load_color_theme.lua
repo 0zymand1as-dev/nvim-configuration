@@ -22,8 +22,29 @@ function M.apply_to_nvim(colors)
   vim.api.nvim_set_hl(0, "Border2", { fg = colors["color6"] })
   vim.api.nvim_set_hl(0, "Border3", { fg = colors["color10"] })
 
+  -- Float / popup transparency
+  -- NOTE: This makes floating windows (incl. LSP code actions via vim.ui.select)
+  -- use the terminal background instead of a solid fill.
+  vim.api.nvim_set_hl(0, "NormalFloat", { fg = colors["foreground"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "FloatBorder", { fg = colors["color6"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "Pmenu", { fg = colors["foreground"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "PmenuSel", { fg = colors["selection_foreground"], bg = colors["selection_background"] })
+  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = colors["color8"] })
+
+  -- Telescope (telescope-ui-select is used for LSP code actions)
+  vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = colors["color6"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = colors["color6"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { fg = colors["color6"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { fg = colors["color6"], bg = "NONE" })
+  vim.api.nvim_set_hl(0, "TelescopeSelection", { link = "Visual" })
+
   -- Base syntax highlighting
-  vim.api.nvim_set_hl(0, "Comment", { fg = colors["color8"], italic = true })
+  vim.api.nvim_set_hl(0, "Comment", { fg = "#8A8A8A", italic = true })
   vim.api.nvim_set_hl(0, "Identifier", { fg = colors["color5"] })
   vim.api.nvim_set_hl(0, "Statement", { fg = colors["color13"], bold = true })
   vim.api.nvim_set_hl(0, "Type", { fg = colors["color11"] })
